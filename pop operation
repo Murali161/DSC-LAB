@@ -1,45 +1,61 @@
-#include <stdio.h>
-#include <stdlib.h>
-struct Node {
-    int data;
-    struct Node* next;
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct node{
+int data;
+struct node*next;
 };
-struct Node* top = NULL;
-int empty() {
-    return top == NULL;
+struct node*top=NULL;
+
+int empty()
+{
+ return top==NULL;
 }
-void push(int value) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    if (!newNode) {
-        printf("Heap overflow\n");
-        return;
-    }
-    newNode->data = value;
-    newNode->next = top; 
-    top = newNode;      
+void push(int data)
+{
+ struct node*newnode=(struct node*)malloc(sizeof(struct node));
+ if(newnode==NULL)
+ {
+  printf("Stack Overflow\n");
+  return;
+ }
+ newnode->data=data;
+ newnode->next=top;
+ top=newnode;
+ printf("%d pushed\n",data);
 }
-int pop() {
-    if (empty()) {
-        printf("Stack Underflow\n");
-        return -1;
-    }
-    struct Node* temp = top;
-    int poppedValue = temp->data;
-    top = top->next;     
-    free(temp);          
-    return poppedValue;
+int pop()
+{
+ struct node* temp;
+ int var;
+ if(empty())
+  {
+  printf("Underflow\n");
+  return -1;
+  }
+ temp=top;
+ var=temp->data;
+ top=top->next;
+ free(temp);
+ return var;
 }
-int peek() {
-    if (empty()) return -1;
-    return top->data;
+int peek()
+{
+ if(empty())
+ return -1;
+ return top->data;
 }
-int main() {
-   
-    push(10);
-    push(20);
-    push(30);
-    printf("Top = %d\n", peek());
-    printf("%d popped\n", pop());
-    printf("%d popped\n", pop());
-   return 0;
+void main()
+{
+ push(10);
+ push(20);
+ push(30);
+ clrscr();
+ printf("top=%d\n",peek());
+ printf("%d popped\n",pop());
+ printf("%d popped\n",pop());
+ getch();
 }
+
+
+
